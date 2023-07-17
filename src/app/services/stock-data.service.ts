@@ -5,14 +5,16 @@ import { Observable, map, of } from 'rxjs';
 
 const ALPHA_VANTAGE_URL = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=demo';
 
-interface SymbolSearchResponse {
-  bestMatches: {
-    symbol: string,
-    name: string,
-    region: string,
-    currency: string,
-    matchScore: number
-  }
+export interface Matches {
+  symbol: string,
+  name: string,
+  region: string,
+  currency: string,
+  matchScore: number
+}
+
+export interface SymbolSearchResponse {
+  bestMatches: Matches[];
 }
 
 @Injectable({
@@ -34,7 +36,7 @@ export class StockDataService {
     return this.fieldMap[field]();
   }
 
-  tickerSearch(keywords: string): Observable<SymbolSearchResponse> {
-    return this.http.get<SymbolSearchResponse>(`${this.getAlphaUrl()}&function=SYMBOL_SEARCH&keywords=${keywords}`);
+  tickerSearch(keywords: string): Observable<any> {
+    return this.http.get(`${this.getAlphaUrl()}&function=SYMBOL_SEARCH&keywords=${keywords}`);
   }
 }
