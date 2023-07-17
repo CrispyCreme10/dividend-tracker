@@ -1,0 +1,12 @@
+<input type="text" placeholder="Symbol/Ticker (MSFT, TGT, etc...)" (keyup)="onKeyUp($event)"/>
+
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th *ngFor="let col of tableColumns$ | async">{{col}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
